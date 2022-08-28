@@ -54,8 +54,9 @@ Two lambda functions have been created in AWS to implement the decode and encode
 A single API Gateway has been configured to serve both routes: encode and decode (https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/encode and https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/decode).  
 
 
-Only the POST method for this routes has been enabled to be consumed outside of their context (CORS), so the other REST methods (PUT, GET etc...) will result in an HTTP 400 code in the preflight call if they are invoked, this other methods will not reach the lambda functions.
-The source code of the lambda functions can be found in src/AWS/decodeLambda.js and src/AWS/encodeLambda.js
+Only the POST method for this routes has been enabled to be consumed outside of their context (CORS), so the other REST methods (PUT, GET etc...) will result in an HTTP 400 code in the preflight call if they are invoked, this other methods will not reach the lambda functions.  
+
+* The source code of the lambda functions can be found in src/AWS/decodeLambda.js and src/AWS/encodeLambda.js
 
 # Error handling
 
