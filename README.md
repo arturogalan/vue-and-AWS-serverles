@@ -1,6 +1,46 @@
 # limecode
 This is the web interface of the limecode test:
 
+## Project Setup
+
+```sh
+npm install
+```
+
+### WEBAPP Compile, Hot-Reload for Development and deploy in localhost
+
+```sh
+npm run dev
+```
+Then you should see the app deployed in the url specified in console by run dev command. Click on the examples to directly execute them, or write a text and click encode/decode to see the result
+
+![Limecode Webapp](/screenshots/webapp.png)
+
+
+
+### CLI Execute limecode command line tool
+Via npm script:
+
+```sh
+npm run limecode -- -h
+npm run limecode encode "HELLO"
+npm run limecode decode "8 5 324 8748 295245 730 23 405 13122 12 108"
+```
+
+![Limecode CLI via npm](/screenshots/limecode_cli2.png)
+
+
+Via node direct command:
+
+```sh
+node src/cli/limecode.mjs encode -h
+node src/cli/limecode.mjs encode "HELLO" 
+node src/cli/limecode.mjs decode "8 5 324 8748 295245 730 23 405 13122 12 108"
+```
+
+![Limecode CLI](/screenshots/limecode_cli.png)
+
+
 # Assumptions
 
 Encrypt/decrypt algorithm
@@ -10,15 +50,18 @@ Encrypt/decrypt algorithm
 
 # Lambda
 
-Two lambda functions have been created in AWS to implement the decode and encode logic. This lambda functions accept a field 'text' and throw an error if this field is not present in the request. If the request is correct then they return a 'text' field with the encoded or decoded text.
-A single API Gateway has been configured to serve both routes: encode an decode (https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/encode and https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/decode).
-Only the POST method for this routes has been enabled to be consumed ouside of their context (CORS), so the other REST methods (PUT, GET etc...) will result in an HTTP 400 code in the preflight call if they are invoked, this other methods will not reach the lambda functions.
+Two lambda functions have been created in AWS to implement the decode and encode logic. These lambda functions accept a field 'text' and throw an error if this field is not present in the request. If the request is correct then they return a 'text' field with the encoded or decoded text.
+A single API Gateway has been configured to serve both routes: encode and decode (https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/encode and https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/decode).  
+
+
+Only the POST method for this routes has been enabled to be consumed outside of their context (CORS), so the other REST methods (PUT, GET etc...) will result in an HTTP 400 code in the preflight call if they are invoked, this other methods will not reach the lambda functions.
 The source code of the lambda functions can be found in src/AWS/decodeLambda.js and src/AWS/encodeLambda.js
 
 # Error handling
 
-The majority of errors related to wrong incoming characters are being handled by returning a '*' char for those positions. I took this decision because I think is the less annoying behaviour for the user, being able to receive the correct chars of a specific string and not failing all the process if a character is wrong in the incoming string.
-If a field 'text' is not present in the PUT call to the endpoints, then a statusCode 400 and an error description is retrieved in the response.
+Most of the errors related to wrong incoming characters are being handled by returning a '*' char for those positions. I took this decision because I think is the less annoying behaviour for the user, being able to receive the correct chars of a specific string and not failing all the process if a character is wrong in the incoming string.  
+
+If a field 'text' is not present in the POST to the endpoints, then a statusCode 400 and an error description is retrieved in the response.
 
 ![visual error handling](/screenshots/errorHandling.png)
 
@@ -28,19 +71,8 @@ The response is HTTP 200 but inside the statusCode is 400 and body contains the 
 
 
 The other REST methods (GET PUT etc...) are protected under the CORS directive.
-The web app encode and decode buttons ara disabled until a text is introduced in the proper inputs avoiding empty calls.
+The web app encode and decode buttons are disabled until a text is introduced in the proper inputs avoiding empty calls.
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
 
 ### Compile and Minify for Production
 
@@ -59,7 +91,7 @@ npm run build
 npm run test:e2e
 ```
 An instance of cypress will be opened and the user can select 'Start E2E testing in Chrome' and click in the limecode spec file
-Then the set of tests will be executed agains the real lambda cloud functions
+Then the set of tests will be executed against the real lambda cloud functions
 
 ![e2e visual execution](/screenshots/e2etests.png)
 
@@ -76,9 +108,6 @@ Then the set of tests will be executed and a result will be sent to the command 
 
 
 ## TODO
-Add a cli function
-
-
 
 
 ## Recommended IDE Setup
