@@ -24,7 +24,7 @@ If a field 'text' is not present in the PUT call to the endpoints, then a status
 
 The response is HTTP 200 but inside the statusCode is 400 and body contains the error description. This is the behaviour I found in the example code template for AWS lambda function (Configure blueprint microservice-http-endpoint template)
 
-![AWS example lambda error handling](https://github.com/arturogalan/limecode/blob/main/screenshots/errorHandling2.png)
+![AWS example lambda error handling](/screenshots/errorHandling2.png)
 
 
 The other REST methods (GET PUT etc...) are protected under the CORS directive.
@@ -61,7 +61,7 @@ npm run test:e2e
 An instance of cypress will be opened and the user can select 'Start E2E testing in Chrome' and click in the limecode spec file
 Then the set of tests will be executed agains the real lambda cloud functions
 
-![e2e visual execution](https://github.com/arturogalan/limecode/blob/master/screenshots/e2etests.png)
+![e2e visual execution](/screenshots/e2etests.png)
 
 To execute the tests in command-line (ci) mode
 ```sh
@@ -72,7 +72,7 @@ npm run test:e2e:ci
 
 Then the set of tests will be executed and a result will be sent to the command line
 
-![e2e ci execution](https://github.com/arturogalan/limecode/blob/master/screenshots/e2etests_ci.png)
+![e2e ci execution](/screenshots/e2etests_ci.png)
 
 
 ## TODO
