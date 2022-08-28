@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useEncoder } from "@/composables/encoder.js";
+import IconDocumentation from "@/components/icons/IconDocumentation.vue";
 
 const { encode, decode } = useEncoder();
 
@@ -30,6 +31,23 @@ const fillExampleDecode = () => {
   textToDecrypt.value = "216 3645 12 324 405";
   handleDecryptClick();
 };
+async function copyToClipboard(text) {
+  // Internet Explorer
+  if (window && window.clipboardData) {
+    return window.clipboardData.setData("Text", text);
+  }
+
+  if (typeof navigator === "undefined") {
+    return false;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
 </script>
 
 <template>
@@ -69,6 +87,13 @@ const fillExampleDecode = () => {
           disabled
         />
       </div>
+      <i
+        class="icon__copyToClipboard"
+        title="Copy to clipboard"
+        @click="copyToClipboard(encryptedText)"
+      >
+        <IconDocumentation />
+      </i>
       {{ encryptedError }}
     </div>
     <h3 class="green">Decode a text</h3>
@@ -107,6 +132,13 @@ const fillExampleDecode = () => {
           disabled
         />
       </div>
+      <i
+        class="icon__copyToClipboard"
+        title="Copy to clipboard"
+        @click="copyToClipboard(decryptedText)"
+      >
+        <IconDocumentation />
+      </i>
       {{ decryptedError }}
     </div>
   </div>
@@ -141,6 +173,9 @@ const fillExampleDecode = () => {
   transition: 0.4s;
   position: absolute;
   bottom: 2.5rem;
+}
+.icon__copyToClipboard {
+  cursor: pointer;
 }
 .button {
   font-size: 1rem;
