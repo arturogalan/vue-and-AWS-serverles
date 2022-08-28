@@ -1,6 +1,46 @@
 # limecode
 This is the web interface of the limecode test:
 
+## Project Setup
+
+```sh
+npm install
+```
+
+### WEBAPP Compile, Hot-Reload for Development and deploy in localhost
+
+```sh
+npm run dev
+```
+Then you should see the app deployed in the url specified by run dev command. Click on the examples to directly execute an example, or write a text and click encode to see the result
+
+![Limecode Webapp](/screenshots/webapp.png)
+
+
+
+### CLI Execute limecode command line tool
+Via npm script:
+
+```sh
+npm run limecode -- -h
+npm run limecode encode "HELLO"
+npm run limecode decode "8 5 324 8748 295245 730 23 405 13122 12 108"
+```
+
+![Limecode CLI via npm](/screenshots/limecode_cli2.png)
+
+
+Via node direct command:
+
+```sh
+node src/cli/limecode.mjs encode -h
+node src/cli/limecode.mjs encode "HELLO" 
+node src/cli/limecode.mjs decode "8 5 324 8748 295245 730 23 405 13122 12 108"
+```
+
+![Limecode CLI](/screenshots/limecode_cli.png)
+
+
 # Assumptions
 
 Encrypt/decrypt algorithm
@@ -30,17 +70,6 @@ The response is HTTP 200 but inside the statusCode is 400 and body contains the 
 The other REST methods (GET PUT etc...) are protected under the CORS directive.
 The web app encode and decode buttons ara disabled until a text is introduced in the proper inputs avoiding empty calls.
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
 
 ### Compile and Minify for Production
 
@@ -76,9 +105,6 @@ Then the set of tests will be executed and a result will be sent to the command 
 
 
 ## TODO
-Add a cli function
-
-
 
 
 ## Recommended IDE Setup
