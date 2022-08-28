@@ -20,11 +20,11 @@ The source code of the lambda functions can be found in src/AWS/decodeLambda.js 
 The majority of errors related to wrong incoming characters are being handled by returning a '*' char for those positions. I took this decision because I think is the less annoying behaviour for the user, being able to receive the correct chars of a specific string and not failing all the process if a character is wrong in the incoming string.
 If a field 'text' is not present in the PUT call to the endpoints, then a statusCode 400 and an error description is retrieved in the response.
 
-![visual error handling](https://github.com/arturogalan/limecode/blob/master/screenshots/errorHandling.png?raw=true)
+![visual error handling](https://github.com/arturogalan/limecode/blob/master/screenshots/errorHandling.png)
 
 The response is HTTP 200 but inside the statusCode is 400 and body contains the error description. This is the behaviour I found in the example code template for AWS lambda function (Configure blueprint microservice-http-endpoint template)
 
-![AWS example lambda error handling](https://github.com/arturogalan/limecode/blob/master/screenshots/errorHandling2.png?raw=true)
+![AWS example lambda error handling](https://github.com/arturogalan/limecode/blob/master/screenshots/errorHandling2.png)
 
 
 The other REST methods (GET PUT etc...) are protected under the CORS directive.
@@ -61,7 +61,7 @@ npm run test:e2e
 An instance of cypress will be opened and the user can select 'Start E2E testing in Chrome' and click in the limecode spec file
 Then the set of tests will be executed agains the real lambda cloud functions
 
-![e2e visual execution](https://github.com/arturogalan/limecode/blob/master/screenshots/e2etests.png?raw=true)
+![e2e visual execution](https://github.com/arturogalan/limecode/blob/master/screenshots/e2etests.png)
 
 To execute the tests in command-line (ci) mode
 ```sh
@@ -72,7 +72,7 @@ npm run test:e2e:ci
 
 Then the set of tests will be executed and a result will be sent to the command line
 
-![e2e ci execution](https://github.com/arturogalan/limecode/blob/master/screenshots/e2etests_ci.png?raw=true)
+![e2e ci execution](https://github.com/arturogalan/limecode/blob/master/screenshots/e2etests_ci.png)
 
 
 ## TODO
