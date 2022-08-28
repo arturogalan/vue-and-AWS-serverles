@@ -51,14 +51,17 @@ Encrypt/decrypt algorithm
 # Lambda
 
 Two lambda functions have been created in AWS to implement the decode and encode logic. These lambda functions accept a field 'text' and throw an error if this field is not present in the request. If the request is correct then they return a 'text' field with the encoded or decoded text.
-A single API Gateway has been configured to serve both routes: encode and decode (https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/encode and https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/decode).
+A single API Gateway has been configured to serve both routes: encode and decode (https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/encode and https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/decode).  
+
+
 Only the POST method for this routes has been enabled to be consumed outside of their context (CORS), so the other REST methods (PUT, GET etc...) will result in an HTTP 400 code in the preflight call if they are invoked, this other methods will not reach the lambda functions.
 The source code of the lambda functions can be found in src/AWS/decodeLambda.js and src/AWS/encodeLambda.js
 
 # Error handling
 
-Most of the errors related to wrong incoming characters are being handled by returning a '*' char for those positions. I took this decision because I think is the less annoying behaviour for the user, being able to receive the correct chars of a specific string and not failing all the process if a character is wrong in the incoming string.
-If a field 'text' is not present in the PUT call to the endpoints, then a statusCode 400 and an error description is retrieved in the response.
+Most of the errors related to wrong incoming characters are being handled by returning a '*' char for those positions. I took this decision because I think is the less annoying behaviour for the user, being able to receive the correct chars of a specific string and not failing all the process if a character is wrong in the incoming string.  
+
+If a field 'text' is not present in the POST to the endpoints, then a statusCode 400 and an error description is retrieved in the response.
 
 ![visual error handling](/screenshots/errorHandling.png)
 
