@@ -1,11 +1,14 @@
 import { ref } from "vue";
+const BACKEND_URL =
+  "https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default";
+const ENCODE_URL = `${BACKEND_URL}/encode`;
+const DECODE_URL = `${BACKEND_URL}/decode`;
 
 export function useEncoder() {
   async function encode(text) {
     const data = ref(null);
     const error = ref(null);
-    const url =
-      "https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/encode";
+    const url = ENCODE_URL;
     const requestOptions = {
       method: "POST",
       headers: {
@@ -16,8 +19,7 @@ export function useEncoder() {
     try {
       const response = await fetch(url, requestOptions);
       const jsonResponse = await response.json();
-      debugger;
-      if (response.status !== 200) {
+      if (jsonResponse.statusCode !== "200") {
         error.value = jsonResponse.body;
       } else {
         data.value = jsonResponse.body;
@@ -30,8 +32,7 @@ export function useEncoder() {
   async function decode(text) {
     const data = ref(null);
     const error = ref(null);
-    const url =
-      "https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default/decode";
+    const url = DECODE_URL;
 
     const requestOptions = {
       method: "POST",
@@ -41,7 +42,7 @@ export function useEncoder() {
     try {
       const response = await fetch(url, requestOptions);
       const jsonResponse = await response.json();
-      if (response.status !== 200) {
+      if (jsonResponse.statusCode !== "200") {
         error.value = jsonResponse.body;
       } else {
         data.value = jsonResponse.body;

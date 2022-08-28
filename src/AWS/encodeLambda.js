@@ -1,7 +1,7 @@
 exports.handler = async (event) => {
   // TODO implement
   let requestBody = event;
-  let statusCode = 200;
+  let statusCode = "200";
   let body;
 
   const A_CHAR_CODE = "A".charCodeAt(0);

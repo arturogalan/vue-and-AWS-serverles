@@ -40,14 +40,17 @@ const fillExampleDecode = () => {
       <a @click="fillExampleEncode()" class="text__link">HELLO</a>)
     </p>
     <div class="action__wrapper">
-      <input
-        name="textToBeEncrypted"
-        class="text__input"
-        type="text"
-        placeholder="text to encrypt"
-        v-model="textToEncrypt"
-        @keyup.enter="handleEncryptClick()"
-      />
+      <div>
+        <p class="text__label_tag">Input:</p>
+        <input
+          name="textToBeEncrypted"
+          class="text__input"
+          type="text"
+          placeholder="text to encrypt"
+          v-model="textToEncrypt"
+          @keyup.enter="handleEncryptClick()"
+        />
+      </div>
       <button
         :disabled="!textToEncrypt"
         class="button"
@@ -55,14 +58,17 @@ const fillExampleDecode = () => {
       >
         Encode
       </button>
-      <input
-        name="encryptedText"
-        class="text__input"
-        type="text"
-        placeholder="Result"
-        v-model="encryptedText"
-        disabled
-      />
+      <div>
+        <p class="text__label_tag">Result:</p>
+        <input
+          name="encryptedText"
+          class="text__input"
+          type="text"
+          placeholder="Result"
+          v-model="encryptedText"
+          disabled
+        />
+      </div>
       {{ encryptedError }}
     </div>
     <h3 class="green">Decode a text</h3>
@@ -72,14 +78,17 @@ const fillExampleDecode = () => {
       >)
     </p>
     <div class="action__wrapper">
-      <input
-        name="textToBeDecrypted"
-        class="text__input"
-        type="text"
-        placeholder="text to decrypt"
-        v-model="textToDecrypt"
-        @keyup.enter="handleDecryptClick()"
-      />
+      <div>
+        <p class="text__label_tag">Input:</p>
+        <input
+          name="textToBeDecrypted"
+          class="text__input"
+          type="text"
+          placeholder="text to decrypt"
+          v-model="textToDecrypt"
+          @keyup.enter="handleDecryptClick()"
+        />
+      </div>
       <button
         :disabled="!textToDecrypt"
         class="button"
@@ -87,14 +96,17 @@ const fillExampleDecode = () => {
       >
         Decode
       </button>
-      <input
-        name="decryptedText"
-        class="text__input"
-        type="text"
-        placeholder="Result"
-        v-model="decryptedText"
-        disabled
-      />
+      <div>
+        <p class="text__label_tag">Result:</p>
+        <input
+          name="decryptedText"
+          class="text__input"
+          type="text"
+          placeholder="Result"
+          v-model="decryptedText"
+          disabled
+        />
+      </div>
       {{ decryptedError }}
     </div>
   </div>
@@ -113,7 +125,7 @@ const fillExampleDecode = () => {
   grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
 }
 .text__description {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .text__input {
   padding: 9px;
@@ -122,6 +134,13 @@ const fillExampleDecode = () => {
 }
 .text__link {
   cursor: pointer;
+}
+.text__label_tag {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  position: absolute;
+  bottom: 2.5rem;
 }
 .button {
   font-size: 1rem;

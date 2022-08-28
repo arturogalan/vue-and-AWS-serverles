@@ -1,7 +1,7 @@
 exports.handler = async (event) => {
   // TODO implement
   let requestBody = event;
-  let statusCode = 200;
+  let statusCode = "200";
   let body;
 
   const A_CHAR_CODE = "A".charCodeAt(0);
@@ -41,10 +41,10 @@ exports.handler = async (event) => {
       );
     }
     const decodedText = decodeUserInput(requestBody.text);
-    statusCode = 200;
+    statusCode = "200";
     body = decodedText;
   } catch (err) {
-    statusCode = 400;
+    statusCode = "400";
     body = "Error processing: " + err.message;
   }
 
