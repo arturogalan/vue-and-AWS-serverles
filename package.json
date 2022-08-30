@@ -20,8 +20,6 @@
     "node-fetch": "^3.2.10",
     "vue": "^3.2.37"
   },
-  "type": "module",
-
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
     "@vitejs/plugin-vue": "^3.0.1",
