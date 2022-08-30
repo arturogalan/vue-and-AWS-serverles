@@ -6,6 +6,19 @@ This is the web interface of the limecode test:
 ```sh
 npm install
 ```
+## Deploy lambda functions on AWS
+
+by executing
+
+```sh
+build:lambda
+```
+Two steps will happen:
+  1- Serverless framework will instal the two lambda functions, so you must have AWS cli propoertly configured in your machine. Functions will be deployed in region: eu-west-3 and with limecode-lambdas names.
+  2- Once this task executes propertly a second task will take the generated URL of the new lambda functions and replace the environment variable VITE_BACKEND_URL inside .env file with this new URL.
+
+Once executed, you can deploy the webapp to test agains your lambda functions created
+
 
 ### WEBAPP Compile, Hot-Reload for Development and deploy in localhost
 
@@ -80,6 +93,15 @@ The web app encode and decode buttons are disabled until a text is introduced in
 ```sh
 npm run build
 ```
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+A set of test have been made in vitest to cover encode and decode functions
+```sh
+npm install
+npm run build
+npm run test:unit
+```
+
 
 ### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
 
