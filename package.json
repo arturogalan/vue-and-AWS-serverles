@@ -13,7 +13,7 @@
     "lambda:deploy": "serverless deploy",
     "lambda:update-url": "node_modules/serverless/bin/serverless.js info --verbose | sed -n '/ServiceEndpoint/p' | sed 's/ServiceEndpoint: /VITE_BACKEND_URL=/g' > .env",
     "cli:assign-url-var": "BACKEND_URL=$(node_modules/serverless/bin/serverless.js info --verbose | sed -n '/ServiceEndpoint/p' | sed 's/\\s*ServiceEndpoint://')",
-    "limecode": "npm run cli:assign-url-var node src/cli/limecode.mjs"
+    "limecode": "npm run --silent cli:assign-url-var node src/cli/limecode.mjs"
   },
   "dependencies": {
     "commander": "^9.4.0",
