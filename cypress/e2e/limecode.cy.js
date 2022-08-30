@@ -1,24 +1,16 @@
 // https://docs.cypress.io/api/introduction/api.html
-const BACKEND_URL =
-  "https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default";
-const ENCODE_URL = `${BACKEND_URL}/encode`;
-const DECODE_URL = `${BACKEND_URL}/decode`;
 
 describe("Limecode tests", () => {
   it("visits the app root url, and click on the examples provided in the description to encode a text", () => {
-    cy.intercept("POST", ENCODE_URL).as("postEncode");
     cy.visit("/");
     cy.contains("h1", "Limecode");
     cy.contains(/HELLO/i).click();
-    cy.wait(["@postEncode"]);
     cy.get('input[name="encryptedText"]').should("have.value", "8 5 12 12 15");
   });
   it("visits the app root url, and click on the examples provided in the description to decode a text", () => {
-    cy.intercept("POST", DECODE_URL).as("postDecode");
     cy.visit("/");
     cy.contains("h1", "Limecode");
     cy.contains(/216 3645 12 324 405/i).click();
-    cy.wait(["@postDecode"]);
     cy.get('input[name="decryptedText"]').should("have.value", "HELLO");
   });
   const testCases = [
@@ -41,7 +33,6 @@ describe("Limecode tests", () => {
 
   testCases.forEach((testCase) => {
     it(`visits the app root url, write ${testCase.encodedText}, click decode and get ${testCase.decodedText} as response`, () => {
-      cy.intercept("POST", DECODE_URL).as("postDecode");
       cy.visit("/");
       cy.contains("h1", "Limecode");
       cy.get('input[name="textToBeDecrypted"]').type(testCase.encodedText);
