@@ -9,10 +9,11 @@
     "test:e2e": "start-server-and-test preview http://localhost:4173/ 'cypress open --e2e'",
     "test:e2e:ci": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "limecode": "node src/cli/limecode.mjs",
     "build:lambda": "npm run lambda:deploy && npm run lambda:update-url",
     "lambda:deploy": "serverless deploy",
-    "lambda:update-url": "node_modules/serverless/bin/serverless.js info --verbose | sed -n '/ServiceEndpoint/p' | sed 's/ServiceEndpoint: /VITE_BACKEND_URL=/g' > .env"
+    "lambda:update-url": "node_modules/serverless/bin/serverless.js info --verbose | sed -n '/ServiceEndpoint/p' | sed 's/ServiceEndpoint: /VITE_BACKEND_URL=/g' > .env",
+    "cli:assign-url-var": "BACKEND_URL=$(node_modules/serverless/bin/serverless.js info --verbose | sed -n '/ServiceEndpoint/p' | sed 's/\\s*ServiceEndpoint://')",
+    "limecode": "npm run cli:assign-url-var node src/cli/limecode.mjs"
   },
   "dependencies": {
     "commander": "^9.4.0",

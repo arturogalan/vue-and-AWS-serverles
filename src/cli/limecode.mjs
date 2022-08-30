@@ -3,8 +3,8 @@
 import { Command } from "commander";
 import fetch from "node-fetch";
 
-const BACKEND_URL =
-  "https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default";
+// eslint-disable-next-line no-undef
+const BACKEND_URL = process.env.BACKEND_URL;
 const ENCODE_URL = `${BACKEND_URL}/encode`;
 const DECODE_URL = `${BACKEND_URL}/decode`;
 
@@ -22,10 +22,10 @@ async function encode(text) {
   try {
     const response = await fetch(url, requestOptions);
     const jsonResponse = await response.json();
-    if (jsonResponse.statusCode !== "200") {
-      error = jsonResponse.body;
+    if (response.status !== 200) {
+      error = jsonResponse.error;
     } else {
-      data = jsonResponse.body;
+      data = jsonResponse.text;
     }
   } catch (err) {
     error = err;
@@ -46,10 +46,10 @@ async function decode(text) {
   try {
     const response = await fetch(url, requestOptions);
     const jsonResponse = await response.json();
-    if (jsonResponse.statusCode !== "200") {
-      error = jsonResponse.body;
+    if (response.status !== 200) {
+      error = jsonResponse.error;
     } else {
-      data = jsonResponse.body;
+      data = jsonResponse.text;
     }
   } catch (err) {
     error = err;
