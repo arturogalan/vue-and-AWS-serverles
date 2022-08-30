@@ -1,9 +1,7 @@
 import { ref } from "vue";
-const BACKEND_URL =
-  "https://808de8cob5.execute-api.eu-west-3.amazonaws.com/default";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const ENCODE_URL = `${BACKEND_URL}/encode`;
 const DECODE_URL = `${BACKEND_URL}/decode`;
-
 export function useEncoder() {
   async function encode(text) {
     const data = ref(null);
@@ -19,10 +17,10 @@ export function useEncoder() {
     try {
       const response = await fetch(url, requestOptions);
       const jsonResponse = await response.json();
-      if (jsonResponse.statusCode !== "200") {
-        error.value = jsonResponse.body;
+      if (response.status !== 200) {
+        error.value = jsonResponse.error;
       } else {
-        data.value = jsonResponse.body;
+        data.value = jsonResponse.text;
       }
     } catch (err) {
       error.value = err;
@@ -42,10 +40,10 @@ export function useEncoder() {
     try {
       const response = await fetch(url, requestOptions);
       const jsonResponse = await response.json();
-      if (jsonResponse.statusCode !== "200") {
-        error.value = jsonResponse.body;
+      if (response.status !== 200) {
+        error.value = jsonResponse.error;
       } else {
-        data.value = jsonResponse.body;
+        data.value = jsonResponse.text;
       }
     } catch (err) {
       error.value = err;

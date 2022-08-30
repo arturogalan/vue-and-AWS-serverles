@@ -1,0 +1,30 @@
+service: limecode-lambdas
+frameworkVersion: '3'
+# Create an optimized package for our functions 
+package:
+  individually: true
+
+plugins:
+  - serverless-bundle
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: eu-west-3
+
+functions:
+  encode:
+    handler: src/lambda/encodeHandler.handler
+    events:
+      - http:
+          path: /encode
+          method: post
+          cors: true
+  decode:           
+    handler: src/lambda/decodeHandler.handler
+    events:
+      - http:
+          path: /decode
+          method: post
+          cors: true      
+       

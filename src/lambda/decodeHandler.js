@@ -1,6 +1,4 @@
-exports.handler = async (event) => {
-  // TODO implement
-  let requestBody = event;
+export const handler = async (event) => {
   let statusCode = "200";
   let body;
 
@@ -33,22 +31,28 @@ exports.handler = async (event) => {
   };
 
   try {
-    if (!event || !event.text) {
+    let requestBody = JSON.parse(event.body);
+
+    if (!requestBody || !requestBody.text) {
       throw new Error(
         `Request malformed or doesn't contain required 'text' field: "${JSON.stringify(
-          event
+          requestBody
         )}"`
       );
     }
     const decodedText = decodeUserInput(requestBody.text);
     statusCode = "200";
-    body = decodedText;
+    body = JSON.stringify({ text: decodedText });
   } catch (err) {
     statusCode = "400";
-    body = "Error processing: " + err.message;
+    body = JSON.stringify({ error: "Error processing: " + err.message });
   }
 
   return {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
     statusCode,
     body,
   };
