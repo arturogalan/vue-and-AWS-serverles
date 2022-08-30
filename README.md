@@ -11,13 +11,13 @@ npm install
 by executing
 
 ```sh
-build:lambda
+npm run build:lambda
 ```
 Two steps will happen:
-  1- Serverless framework will instal the two lambda functions, so you must have AWS cli propoertly configured in your machine. Functions will be deployed in region: eu-west-3 and with limecode-lambdas names.
-  2- Once this task executes propertly a second task will take the generated URL of the new lambda functions and replace the environment variable VITE_BACKEND_URL inside .env file with this new URL.
+  1- Serverless framework will install the two lambda functions, so you must have AWS cli properly configured in your machine. Functions will be deployed in region: eu-west-3 and with limecode-lambdas names.
+  2- Once this task executes properly a second task will take the generated URL of the new lambda functions and replace the environment variable VITE_BACKEND_URL inside .env file with this new URL.
 
-Once executed, you can deploy the webapp to test agains your lambda functions created
+Once executed, you can deploy the webapp to test against your lambda functions created
 
 
 ### WEBAPP Compile, Hot-Reload for Development and deploy in localhost
@@ -32,6 +32,15 @@ Then you should see the app deployed in the url specified in console by run dev 
 
 
 ### CLI Execute limecode command line tool
+
+A cli utility has been done, using an environment variable called BACKEND_URL to retrieve the created lambdas
+
+So first you have to run 
+
+```sh
+npm run build:lambda
+```
+
 Via npm script:
 
 ```sh
