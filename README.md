@@ -33,7 +33,7 @@ Then you should see the app deployed in the url specified in console by run dev 
 
 ### CLI Execute limecode command line tool
 
-A cli utility has been done, using an environment variable called BACKEND_URL to retrieve the created lambdas
+A cli utility has been done, using an environment variable called BACKEND_URL to retrieve the created lambdas URL
 
 So first you have to run 
 
@@ -50,17 +50,6 @@ npm run limecode decode "8 5 324 8748 295245 730 23 405 13122 12 108"
 ```
 
 ![Limecode CLI via npm](/screenshots/limecode_cli2.png)
-
-
-Via node direct command:
-
-```sh
-node src/cli/limecode.mjs encode -h
-node src/cli/limecode.mjs encode "HELLO" 
-node src/cli/limecode.mjs decode "8 5 324 8748 295245 730 23 405 13122 12 108"
-```
-
-![Limecode CLI](/screenshots/limecode_cli.png)
 
 
 # Assumptions
