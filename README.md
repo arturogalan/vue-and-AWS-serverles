@@ -1,5 +1,3 @@
-# limecode
-This is the web interface of the limecode test:
 
 ## Project Setup
 
@@ -14,7 +12,7 @@ by executing
 npm run build:lambda
 ```
 Two steps will happen:
-  1- Serverless framework will install the two lambda functions, so you must have AWS cli properly configured in your machine. Functions will be deployed in region: eu-west-3 and with limecode-lambdas names.
+  1- Serverless framework will install the two lambda functions, so you must have AWS cli properly configured in your machine. Functions will be deployed in region: eu-west-3 and with greencode-lambdas names.
   2- Once this task executes properly a second task will take the generated URL of the new lambda functions and replace the environment variable VITE_BACKEND_URL inside .env file with this new URL.
 
 Once executed, you can deploy the webapp to test against your lambda functions created
@@ -27,11 +25,11 @@ npm run dev
 ```
 Then you should see the app deployed in the url specified in console by run dev command. Click on the examples to directly execute them, or write a text and click encode/decode to see the result
 
-![Limecode Webapp](/screenshots/webapp.png)
+![Greencode Webapp](/screenshots/webapp.png)
 
 
 
-### CLI Execute limecode command line tool
+### CLI Execute greencode command line tool
 
 A cli utility has been done, using an environment variable called BACKEND_URL to retrieve the created lambdas URL
 
@@ -44,12 +42,12 @@ npm run build:lambda
 Via npm script:
 
 ```sh
-npm run limecode -- -h
-npm run limecode encode "HELLO"
-npm run limecode decode "8 5 324 8748 295245 730 23 405 13122 12 108"
+npm run greencode -- -h
+npm run greencode encode "HELLO"
+npm run greencode decode "8 5 324 8748 295245 730 23 405 13122 12 108"
 ```
 
-![Limecode CLI via npm](/screenshots/limecode_cli2.png)
+![Greencode CLI via npm](/screenshots/greencode_cli2.png)
 
 
 # Assumptions
@@ -103,7 +101,7 @@ npm run test:unit
 
 ### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
 
-A set of test have been made in cypress to cover the test cases defined in the instructions, see cypress/e2e/limecode.cy.js with the tests definitions:
+A set of test have been made in cypress to cover the test cases defined in the instructions, see cypress/e2e/greencode.cy.js with the tests definitions:
 
 To execute the tests in visual mode
 ```sh
@@ -111,7 +109,7 @@ npm install
 npm run build
 npm run test:e2e
 ```
-An instance of cypress will be opened and the user can select 'Start E2E testing in Chrome' and click in the limecode spec file
+An instance of cypress will be opened and the user can select 'Start E2E testing in Chrome' and click in the greencode spec file
 Then the set of tests will be executed against the real lambda cloud functions
 
 ![e2e visual execution](/screenshots/e2etests.png)

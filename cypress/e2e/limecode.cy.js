@@ -1,15 +1,15 @@
 // https://docs.cypress.io/api/introduction/api.html
 
-describe("Limecode tests", () => {
+describe("Greencode tests", () => {
   it("visits the app root url, and click on the examples provided in the description to encode a text", () => {
     cy.visit("/");
-    cy.contains("h1", "Limecode");
+    cy.contains("h1", "Greencode");
     cy.contains(/HELLO/i).click();
     cy.get('input[name="encryptedText"]').should("have.value", "8 5 12 12 15");
   });
   it("visits the app root url, and click on the examples provided in the description to decode a text", () => {
     cy.visit("/");
-    cy.contains("h1", "Limecode");
+    cy.contains("h1", "Greencode");
     cy.contains(/216 3645 12 324 405/i).click();
     cy.get('input[name="decryptedText"]').should("have.value", "HELLO");
   });
@@ -21,11 +21,6 @@ describe("Limecode tests", () => {
       decodedText: "OBSERVABILITY AS CODE",
     },
     {
-      encodedText:
-        "54 531441 513 2657205 324 177147 6908733 2657205 551124 540 3645 81 216",
-      decodedText: "BASELIME TECH",
-    },
-    {
       encodedText: "8 5 324 8748 295245 730 23 405 13122 12 108",
       decodedText: "HELLO WORLD",
     },
@@ -34,7 +29,7 @@ describe("Limecode tests", () => {
   testCases.forEach((testCase) => {
     it(`visits the app root url, write ${testCase.encodedText}, click decode and get ${testCase.decodedText} as response`, () => {
       cy.visit("/");
-      cy.contains("h1", "Limecode");
+      cy.contains("h1", "Greencode");
       cy.get('input[name="textToBeDecrypted"]').type(testCase.encodedText);
       cy.contains("button", "Decode").as("decodeButton");
       cy.get('input[name="textToBeDecrypted').should(

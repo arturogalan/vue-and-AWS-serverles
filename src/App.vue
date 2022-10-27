@@ -1,6 +1,6 @@
 <script setup>
 import HelloWorld from "@/components/HelloWorld.vue";
-import LimeEncoderAndDecoder from "@/components/LimeEncoderAndDecoder.vue";
+import GreenEncoderAndDecoder from "@/components/GreenEncoderAndDecoder.vue";
 </script>
 
 <template>
@@ -14,12 +14,12 @@ import LimeEncoderAndDecoder from "@/components/LimeEncoderAndDecoder.vue";
     />
 
     <div class="wrapper">
-      <HelloWorld msg="Limecode" />
+      <HelloWorld msg="Greencode" />
     </div>
   </header>
 
   <main>
-    <LimeEncoderAndDecoder />
+    <GreenEncoderAndDecoder />
   </main>
 </template>
 
