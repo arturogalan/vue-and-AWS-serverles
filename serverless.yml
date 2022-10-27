@@ -1,4 +1,4 @@
-service: limecode-lambdas
+service: greencode-lambdas
 frameworkVersion: '3'
 # Create an optimized package for our functions 
 package:

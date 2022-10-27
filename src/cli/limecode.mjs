@@ -60,7 +60,7 @@ async function decode(text) {
 const program = new Command();
 
 program
-  .description("Limecode: An application for encoding and decoding text")
+  .description("Greencode: An application for encoding and decoding text")
   .version("0.0.1");
 program
   .command("encode")
@@ -89,5 +89,5 @@ program
 program.parse();
 
 // Try the following on macOS or Linux:
-//    node src/cli/limecode.mjs decode "8 5 324 8748 295245 730 23 405 13122 12 108"
-//    node src/cli/limecode.mjs encode "my text"
+//    node src/cli/greencode.mjs decode "8 5 324 8748 295245 730 23 405 13122 12 108"
+//    node src/cli/greencode.mjs encode "my text"
